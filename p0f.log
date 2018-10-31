@@ -323,9 +323,6 @@
 [2018/10/25 09:16:21] mod=mtu|cli=208.90.152.52/64204|srv=128.187.82.230/53|subj=cli|link=Ethernet or modem|raw_mtu=1500
 [2018/10/25 09:16:21] mod=syn|cli=80.10.201.114/64116|srv=128.187.82.230/53|subj=cli|os=Linux 2.2.x-3.x (barebone)|dist=26|params=generic tos:0x08|raw_sig=4:38+26:0:1460:mss*2,0:mss:df,id+:0
 [2018/10/25 09:16:21] mod=mtu|cli=80.10.201.114/64116|srv=128.187.82.230/53|subj=cli|link=Ethernet or modem|raw_mtu=1500
-tyler@harmony:~/p0f/p0fdata$ cat p0finfo1.log | grep DSL
-tyler@harmony:~/p0f/p0fdata$ cat p0finfo1.log | grep dsl
-tyler@harmony:~/p0f/p0fdata$ cat p0finfo1.log
 [2018/10/25 09:16:06] mod=syn|cli=80.10.200.101/7316|srv=128.187.82.230/53|subj=cli|os=Linux 2.2.x-3.x (no timestamps)|dist=26|params=generic tos:0x08|raw_sig=4:38+26:0:1460:mss*10,9:mss,nop,nop,sok,nop,ws:df,id+:0
 [2018/10/25 09:16:06] mod=mtu|cli=80.10.200.101/7316|srv=128.187.82.230/53|subj=cli|link=Ethernet or modem|raw_mtu=1500
 [2018/10/25 09:16:06] mod=syn|cli=195.175.123.137/36392|srv=128.187.82.231/53|subj=cli|os=???|dist=22|params=none|raw_sig=4:42+22:0:1460:mss*20,7:mss,sok,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,nop,ws:df,id+:0
