@@ -19,7 +19,7 @@ def get_var_of_one_type(var_str=None, data_holder=None):
 def make_dict_of_one_type(attribute_dict, variables, data_holders, key):
     for holder in data_holders:
         value = getattr(holder, key)
-        # No repeat values
+        # TODO handle repeat values, list of dicts perhaps?
         if value not in attribute_dict:
             attribute_dict[value] = {}
             # for each variable in the DataHolder class put its type as key and value as the value
