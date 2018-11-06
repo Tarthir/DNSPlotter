@@ -6,9 +6,10 @@ from collections import namedtuple
 
 class Plotter(object):
 
-    def __init__(self, variable_dict, num_of_ips):
+    def __init__(self, variable_dict, special_dict, num_of_ips):
         self.variable_dict = variable_dict
         self.num_of_ips = num_of_ips
+        self.special_dict = special_dict
 
     def bar_graph(self):
 

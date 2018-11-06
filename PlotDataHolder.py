@@ -3,7 +3,8 @@ import sys
 
 
 class PlotDataHolder(object):
-    # These are all strings which correspond with data that p0f returns
+    # These are all strings which correspond with data that p0f r
+    # eturns
 
     def __init__(self, line1, line2, line3):
         self.mod = ""
@@ -24,7 +25,7 @@ class PlotDataHolder(object):
         self.parseline1(line1)
         self.parseline2(line2)
         if line3 is not None:
-            sys.stderr.write("IP with three p0f lines found: {}".format(self.client))
+            sys.stderr.write("IP with three p0f lines found: {}\n".format(self.client))
             self.parseline2(line3)
 
     def parseline1(self, line1):
