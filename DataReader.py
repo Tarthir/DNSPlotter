@@ -85,4 +85,4 @@ class DataReader(object):
                 # the variable name
                 # noinspection PyTypeChecker
                 variable_dict[attribute] = attribute_dict
-        return variable_dict, len(self.__data_holders)
+        return variable_dict

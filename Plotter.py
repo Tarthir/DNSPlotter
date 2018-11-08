@@ -6,45 +6,18 @@ from collections import namedtuple
 
 class Plotter(object):
 
-    def __init__(self, variable_dict, special_dict, num_of_ips):
-        self.variable_dict = variable_dict
-        self.num_of_ips = num_of_ips
-        self.special_dict = special_dict
-
-    def bar_graph(self):
-
-        n_groups = 1
-
-        means_men = (20, 35, 30, 35, 27)
-        std_men = (2, 3, 4, 1, 2)
-
-        means_women = (25, 32, 34, 20, 25)
-        std_women = (3, 5, 2, 3, 3)
-
+    # Ths method handles the making of categorical bar graphs
+    # you pass in two lists, one of your x_values and one of your y values in respective order
+    def categorical_bar_graph(self, title, x_name, y_name, cat_x_values, cat_y_values):
+        plt.style.use('ggplot')
         fig, ax = plt.subplots()
+        x_pos = [i for i, _ in enumerate(cat_x_values)]
 
-        index = np.arange(n_groups)
-        bar_width = 0.35
+        plt.bar(x_pos, cat_y_values, color='green')
+        ax.set_xlabel(x_name)
+        ax.set_ylabel(y_name)
+        ax.set_title(title)
+        plt.xticks(x_pos, cat_x_values)
 
-        opacity = 0.4
-        error_config = {'ecolor': '0.3'}
-
-        rects1 = ax.bar(index, means_men, bar_width,
-                        alpha=opacity, color='b',
-                        yerr=std_men, error_kw=error_config,
-                        label='Men')
-
-        rects2 = ax.bar(index + bar_width, means_women, bar_width,
-                        alpha=opacity, color='r',
-                        yerr=std_women, error_kw=error_config,
-                        label='Women')
-
-        ax.set_xlabel('Group')
-        ax.set_ylabel('Scores')
-        ax.set_title('Scores by group and gender')
-        ax.set_xticks(index + bar_width / 2)
-        ax.set_xticklabels(('A', 'B', 'C', 'D', 'E'))
-        ax.legend()
-
-        fig.tight_layout()
         plt.show()
+
