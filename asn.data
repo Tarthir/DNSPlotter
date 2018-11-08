@@ -1,0 +1,99 @@
+NA      | 103.11.222.22    | NA
+NA      | 103.83.131.41    | NA
+NA      | 143.0.124.10     | NA
+NA      | 205.143.129.11   | NA
+NA      | 45.227.96.10     | NA
+2       | 187.108.112.22   | UDEL-DCN - University of Delaware, US
+2       | 91.143.144.7     | UDEL-DCN - University of Delaware, US
+3       | 103.49.200.252   | MIT-GATEWAYS - Massachusetts Institute of Technolog                                                                                                                                  y, US
+3       | 128.30.0.126     | MIT-GATEWAYS - Massachusetts Institute of Technolog                                                                                                                                  y, US
+3       | 128.30.2.118     | MIT-GATEWAYS - Massachusetts Institute of Technolog                                                                                                                                  y, US
+3       | 128.30.2.25      | MIT-GATEWAYS - Massachusetts Institute of Technolog                                                                                                                                  y, US
+3       | 128.52.130.209   | MIT-GATEWAYS - Massachusetts Institute of Technolog                                                                                                                                  y, US
+3       | 18.18.149.13     | MIT-GATEWAYS - Massachusetts Institute of Technolog                                                                                                                                  y, US
+3       | 18.71.0.151      | MIT-GATEWAYS - Massachusetts Institute of Technolog                                                                                                                                  y, US
+3       | 18.85.21.12      | MIT-GATEWAYS - Massachusetts Institute of Technolog                                                                                                                                  y, US
+3       | 202.56.168.66    | MIT-GATEWAYS - Massachusetts Institute of Technolog                                                                                                                                  y, US
+4       | 128.9.48.15      | ISI-AS - University of Southern California, US
+4       | 128.9.48.18      | ISI-AS - University of Southern California, US
+5       | 45.225.108.5     | SYMBOLICS - Symbolics, Inc., US
+5       | 62.201.201.201   | SYMBOLICS - Symbolics, Inc., US
+5       | 62.201.201.202   | SYMBOLICS - Symbolics, Inc., US
+9       | 128.2.0.116      | CMU-ROUTER - Carnegie Mellon University, US
+9       | 128.2.0.92       | CMU-ROUTER - Carnegie Mellon University, US
+9       | 128.2.129.201    | CMU-ROUTER - Carnegie Mellon University, US
+9       | 209.129.244.250  | CMU-ROUTER - Carnegie Mellon University, US
+10      | 185.143.40.250   | CSNET-EXT-AS - CSNET Coordination and Information C                                                                                                                                  enter (CSNET-CIC), US
+10      | 216.215.60.2     | CSNET-EXT-AS - CSNET Coordination and Information C                                                                                                                                  enter (CSNET-CIC), US
+10      | 216.215.60.3     | CSNET-EXT-AS - CSNET Coordination and Information C                                                                                                                                  enter (CSNET-CIC), US
+12      | 216.165.126.140  | NYU-DOMAIN - New York University, US
+14      | 128.59.1.22      | COLUMBIA-GW - Columbia University, US
+14      | 128.59.1.37      | COLUMBIA-GW - Columbia University, US
+14      | 128.59.144.188   | COLUMBIA-GW - Columbia University, US
+17      | 128.210.177.190  | PURDUE - Purdue University, US
+25      | 128.32.206.151   | UCB - University of California at Berkeley, US
+25      | 128.32.206.168   | UCB - University of California at Berkeley, US
+27      | 128.8.138.188    | UMDNET - University of Maryland, US
+27      | 128.8.66.15      | UMDNET - University of Maryland, US
+27      | 128.8.66.83      | UMDNET - University of Maryland, US
+27      | 128.8.74.2       | UMDNET - University of Maryland, US
+27      | 128.8.76.2       | UMDNET - University of Maryland, US
+27      | 192.54.102.5     | UMDNET - University of Maryland, US
+31      | 131.215.254.100  | CIT - California Institute of Technology, US
+42      | 66.185.112.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.112.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.112.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.113.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.113.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.113.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.114.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.114.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.114.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.115.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.115.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.115.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.116.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.116.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.116.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.117.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.117.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.117.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.118.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.118.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.118.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.119.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.119.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.119.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.120.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.120.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.120.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.121.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.121.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.121.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.122.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.122.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.122.244   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.123.242   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.123.243   | WOODYNET-1 - WoodyNet, US
+42      | 66.185.123.244   | WOODYNET-1 - WoodyNet, US
+42      | 74.63.16.242     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.16.243     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.16.244     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.16.246     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.16.247     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.16.248     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.16.250     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.16.251     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.17.242     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.17.243     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.17.244     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.17.246     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.17.247     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.17.248     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.17.250     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.20.242     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.20.243     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.20.244     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.21.242     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.21.243     | WOODYNET-1 - WoodyNet, US
+42      | 74.63.21.244     | WOODYNET-1 - WoodyNet, US

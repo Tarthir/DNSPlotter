@@ -11,7 +11,7 @@ import DataHolderMethods as methods
 # READ IN THE DATA FROM OUR FILES
 
 if len(sys.argv) < 2 or len(sys.argv) > 3:
-    print("Invalid, Usage: python PlotMain.py {} {}\n".format("<DataFilesPath>","[Main attribute]"))
+    print("Invalid, Usage: python PlotMain.py {} {}\n".format("<DataFilesPath>", "[Main attribute]"))
     exit(1)
 
 dataReader = data_obj.DataReader()
@@ -20,21 +20,24 @@ fileReader = file_reader.FileReader(sys.argv[1], dataReader)
 # All files we are reading should be in one directory given as an argument
 # Read in all the files
 fileReader.read_all_files()
+
+
 ######################################################################################################
 # BEGIN PROCESSING THE DATA
 
 variable_dict = dataReader.add_up_all_attrs()
 special_dict = None
 # If we were told to create a more specific set of data
-# TODO can ask what type of data they want, give options, instead of it being passed in from the beginning
 if len(sys.argv) == 3:
     key = sys.argv[2]
     special_dict = dataReader.add_up_all_attrs(methods.get_var_of_one_type, methods.make_dict_of_one_type, key)
 
 plotter = plot.Plotter()
+
+
 ######################################################################################################
 # AT THIS POINT YOU CAN CALL/USE WHAT FUNCTIONS LOGIC YOU WANT TO CREATE THE NEEDED GRAPHS
-
+# TODO take out long names for OS's (take out unneeded info in parens)
 
 # DO OS's
 # Grab The inner dicts

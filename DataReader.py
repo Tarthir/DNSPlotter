@@ -1,12 +1,13 @@
 import PlotDataHolder as Holder
 import re
+import DataHolderList as Holder_List
 
 
 class DataReader(object):
 
     def __init__(self):
         # The List of DataHolder classes we will be pulling data from
-        self.__data_holders = []
+        self.__data_holders = Holder_List.DataHolderList()
         # The Variables of those DataHolder Classes
         self.__vars = None
 
@@ -32,10 +33,32 @@ class DataReader(object):
                 break  # EOF
             if self.__check_host_change(line2):
                 line3 = fd.readline()
-            self.__data_holders.append(Holder.PlotDataHolder(line1, line2, line3))
+            # Make a data holder and parse the p0f data
+            holder = Holder.PlotDataHolder()
+            holder.parse_p0f(line1, line2, line3)
+            self.__data_holders.append(holder)
 
-    def read_asn_data(self):
-        pass
+    # Goes through the asn data file(s) and
+    def read_asn_data(self, filename):
+        fd = open(filename, "r")
+        while True:
+            line = fd.readline()
+            if not line:
+                break # EOF
+            line_arr = line.split("|")
+            # Strip away all unneeded whitespace
+            stripped_arr = [x.strip() for x in line_arr]
+            holder_to_update = None
+            # if we have already found the ip address
+            if stripped_arr[1] in self.__data_holders.ip_to_holder.keys():
+                holder_to_update = self.__data_holders.ip_to_holder[stripped_arr[1]]
+            # We have not seen this IP address before
+            else:
+                holder_to_update = Holder.PlotDataHolder()
+
+            holder_to_update.parse_asn(stripped_arr)
+            self.__data_holders.append(holder_to_update)
+
 
     # Goes through every PlotDataHolder Object and adds every value for a given attribute
     # to a dictionary and adds 1 to the that key's value. So the os attribute may contribute zero or more entries
@@ -44,27 +67,29 @@ class DataReader(object):
         # For each attribute, add 1 to its value
         for holder in data_holders:
             # make the value the key
-            key = getattr(holder, attr)
-            if key not in attribute_dict:
-                attribute_dict[key] = 1.0
+            if attr not in holder.var_dict.keys():
+                attribute_dict[attr] = 0
             else:
-                # add value of attribute into the dictionary
-                attribute_dict[key] += 1.0
+                key = holder.var_dict[attr]# getattr(holder, attr)
+                if key not in attribute_dict:
+                    attribute_dict[key] = 1.0
+                else:
+                    # add value of attribute into the dictionary
+                    attribute_dict[key] += 1.0
 
-    # Get the variable names in the DataHolder class passed in
+    # This is the default way to get variables from DataHolder, it grabs them all
     # Key is None in this case as we are going to get all the variables in this method
     def __get_variables(key, data_holder):
-        return [a for a in dir(data_holder) if not a.startswith('__') and not callable(getattr(data_holder, a))]
+        return list(data_holder.all_possible_keys)
 
-    # Returns a dictionary of dictionaries which holds every piece of data in PlotDataHolder
-    # and how many times each piece of data was found
-    # Also returns the number of IPs which are in our data
+    # Returns a dictionary of dictionaries which holds every piece of data in PlotDataHolder objects as well as
+    # how many times each piece of data was found. Also returns the number of IPs which are in our data
     # Optional parameters determine what variables are used for the variable dict and
     # how the dictionary is constructed
     def add_up_all_attrs(self, get_vars=__get_variables, make_vals=__add_up_attr, key=None):
         # This dictionary will hold a value for every variable attribute in the PlotDataHolder class
         # gets only the variables from the given DataHolder class
-        variables = get_vars(key, self.__data_holders[0])
+        variables = get_vars(key, self.__data_holders)
         self.set_vars(variables)
 
         # add the variable names to a dictionary
@@ -77,9 +102,9 @@ class DataReader(object):
             if len(variable_dict) == 1:
                 # If you are passing in only one variable I assume you want all the other DataHolder Vars as
                 # keys in attribute_dict and value of variable_dict
-                make_vals(attribute_dict, self.__get_variables(self.__data_holders[0]), self.__data_holders, key)
+                make_vals(attribute_dict, self.__data_holders.all_possible_keys, self.__data_holders.holder_list, key)
             else:
-                make_vals(self, attribute, attribute_dict, self.__data_holders)
+                make_vals(self, attribute, attribute_dict, self.__data_holders.holder_list)
             # if the dictionary we passed into make_values came back with keys and values in it
             if attribute_dict:
                 # the variable name
