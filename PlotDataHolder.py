@@ -36,7 +36,8 @@ class PlotDataHolder(object):
                 idx = 0
             lst = name[idx].rsplit(',', 1)
             self.var_dict["longname"] = lst[0]
-            self.var_dict["country"] = lst[1]
+            if len(lst) == 2:
+                self.var_dict["country"] = lst[1]
 
     def __parseline1(self, line1):
         try:
