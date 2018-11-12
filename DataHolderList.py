@@ -10,13 +10,13 @@ class DataHolderList(object):
         # See if ip address is already been found, if so add new ports it was found on
         # also update the already existing holder
         if holder.var_dict["client"] in self.ip_to_holder.keys():
-           try:
+            try:
                 old_holder = self.ip_to_holder[holder.var_dict["client"]]
                 # old_holder.ports_found_on.append(holder.var_dict["clientport"])
                 old_holder.update(holder)
                 holder = old_holder
 
-           except KeyError as err:
+            except KeyError as err:
                 sys.stderr.write('KeyError in DataHolderList: %s\n' % str(err))
                 return
         else:

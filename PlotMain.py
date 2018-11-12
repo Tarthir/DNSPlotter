@@ -1,3 +1,4 @@
+import operator
 import DataReader as data_obj
 import Plotter as plot
 import sys
@@ -52,5 +53,8 @@ for ip_dict in all_ips.values():
 plotter.categorical_bar_graph("Type Of OS's Found", "OS Types", "Number Found", list(num_of_os.keys()), list(num_of_os.values()))
 
 # DO by country
+all_countries = (variable_dict["country"])
+# get the top 20 countries
+countries = dict(sorted(all_countries.items(), key=operator.itemgetter(1), reverse=True)[:25])
 plotter.categorical_bar_graph("Countries of Origin", "Countries", "Number Found",
-                              list(variable_dict["country"].keys()), list(variable_dict["country"].values()))
+                              list(countries.keys()), list(countries.values()))

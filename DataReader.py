@@ -1,5 +1,6 @@
 import PlotDataHolder as Holder
 import re
+import sys
 import DataHolderList as Holder_List
 
 
@@ -42,7 +43,11 @@ class DataReader(object):
     def read_asn_data(self, filename):
         fd = open(filename, "r")
         while True:
-            line = fd.readline()
+            line = None
+            try:
+                line = fd.readline()
+            except UnicodeDecodeError as err:
+                sys.stderr.write('KeyError in DataHolderList: %s\n' % str(err))
             if not line:
                 break # EOF
             line_arr = line.split("|")
