@@ -28,3 +28,16 @@ class Plotter(object):
 
         plt.show()
 
+    def pie_chart(self, title, labels, sizes, explode):
+        # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+        #labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
+        #sizes = [15, 30, 45, 10]
+
+        fig1, ax = plt.subplots()
+        ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+                shadow=True, startangle=90)
+        ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax.set_title(title)
+
+        plt.show()
+
