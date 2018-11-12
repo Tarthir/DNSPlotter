@@ -54,7 +54,26 @@ plotter.categorical_bar_graph("Type Of OS's Found", "OS Types", "Number Found", 
 
 # DO by country
 all_countries = (variable_dict["country"])
-# get the top 20 countries
-countries = dict(sorted(all_countries.items(), key=operator.itemgetter(1), reverse=True)[:25])
-plotter.categorical_bar_graph("Countries of Origin", "Countries", "Number Found",
-                              list(countries.keys()), list(countries.values()))
+# get the top 25 countries
+sorted_countries = sorted(all_countries.items(), key=operator.itemgetter(1), reverse=True)
+top_countries = dict(sorted_countries[:25])
+plotter.categorical_bar_graph("Top 25 Countries", "Countries", "Number Found",
+                              list(top_countries.keys()), list(top_countries.values()))
+
+# Do by country and include 'Other'
+top_countries['Other'] = 0
+for i in range(25, len(sorted_countries)):
+    top_countries['Other'] += sorted_countries[i][1]
+
+plotter.categorical_bar_graph("Top 25 Countries", "Countries", "Number Found",
+                              list(top_countries.keys()), list(top_countries.values()))
+
+# Do by company name
+all_companies = variable_dict["shortname"]
+# get top 10 companies
+sorted_companies = sorted(all_companies.items(), key=operator.itemgetter(1), reverse=True)
+top_companies = dict(sorted_companies[:10])
+plotter.categorical_bar_graph("Top 10 Companies", "Companies", "Number Found",
+                              list(top_companies.keys()), list(top_companies.values()))
+
+# Do by Country pie chart

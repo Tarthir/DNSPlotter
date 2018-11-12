@@ -10,7 +10,7 @@ class Plotter(object):
     # you pass in two lists, one of your x_values and one of your y values in respective order
     def categorical_bar_graph(self, title, x_name, y_name, cat_x_values, num_y_values):
         # convert NoneType to a string
-        for i in range(0,len(cat_x_values)):
+        for i in range(0, len(cat_x_values)):
             if cat_x_values[i] is None:
                 cat_x_values[i] = "None"
 

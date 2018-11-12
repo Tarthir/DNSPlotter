@@ -14,6 +14,7 @@ class PlotDataHolder(object):
         self.holder_ip = None
         # The number of times this IP has been found between all data sets
        # self.ports_found_on = []
+        self.SIZE_OF_COUNTRY_CODES = 2
 
     def parse_p0f(self, line1, line2, line3):
         # parse the lines and hold the data
@@ -24,20 +25,50 @@ class PlotDataHolder(object):
             self.__parseline2(line3)
         self.holder_ip = self.var_dict["client"]
 
+    # This method parses ASN lines
+    # Basically these lines are laid out thusly: ASN | IP | SHORT_NAME - LONGNAME, COUNTRY CODE
+    # However there are exceptions which complicate the logic
+    # line_arr will usually look like this: [ASN,IP,REST] with REST = 'SHORT_NAME - LONGNAME, COUNTRY CODE'
     def parse_asn(self, line_arr):
         self.var_dict["asn"] = line_arr[0]
         self.var_dict["client"] = line_arr[1]
-        name = line_arr[2].split(" - ")
+
+        # Will split: MIT-GATEWAYS - Massachusetts Institute of Technology, US
+        # to: [MIT-GATEWAYS, Massachusetts Institute of Technology, US ]
+        # and GNW-ASN39211, EE
+        # to: [GNW-ASN39211, EE]
+        name = line_arr[2].split(" - ", 1) if " - " in line_arr[2] else line_arr[2].split(", ", 1)
+        # This first part will be the 'short name'
         self.var_dict["shortname"] = name[0]
         if name[0] != "NA":
             idx = 1
-            # if we are given a very small result we may not have split on " - "
+            # if we are given a very small result we may not have a " - " to split on
             if len(name) == 1:
                 idx = 0
-            lst = name[idx].rsplit(',', 1)
-            self.var_dict["longname"] = lst[0]
-            if len(lst) == 2:
-                self.var_dict["country"] = lst[1]
+            # split the name array into longname and country attributes
+            longname_country_arr = name[idx].rsplit(', ', 1)
+            if len(longname_country_arr) == 1:
+                self.__check_small_len(longname_country_arr,name)
+            else:
+                self.var_dict["longname"] = longname_country_arr[0].strip()
+                self.var_dict["country"] = longname_country_arr[1].strip()
+
+    # Helper function which deals with the complicated logic of parsing asn lines
+    # In this function what comes in is longname_country_arr of length 1
+    # It may contain the country code, if it does we grab it
+    # If it does not then we see if it was parsed out in an earlier step from 'name'
+    def __check_small_len(self, longname_country_arr, name):
+        self.var_dict["longname"] = name[0]
+        # If there is no country code that was parsed, return
+        if len(longname_country_arr[0].strip()) > self.SIZE_OF_COUNTRY_CODES:
+            # If 'name' has the country code
+            if len(name) == 3:
+                self.var_dict['country'] = name[2]
+                return
+            # If there is no country code given to us
+            self.var_dict["country"] = None
+            return
+        self.var_dict["country"] = longname_country_arr[0].strip()
 
     def __parseline1(self, line1):
         try:
@@ -64,7 +95,9 @@ class PlotDataHolder(object):
         except AttributeError as err:
             sys.stderr.write('ERROR: %sn' % str(err))
 
-    def update(self,new_holder):
+    # This method updates a PlotDataHolder object
+    # Given another PlotDataHolder object you can update the fields of a current Holder with the one passed in
+    def update(self, new_holder):
         for key in new_holder.var_dict.keys():
             # if this key doesnt exist in our current holder or it's value is of NoneType
             if key not in self.var_dict.keys() or self.var_dict[key] is None:

@@ -64,7 +64,6 @@ class DataReader(object):
             holder_to_update.parse_asn(stripped_arr)
             self.__data_holders.append(holder_to_update)
 
-
     # Goes through every PlotDataHolder Object and adds every value for a given attribute
     # to a dictionary and adds 1 to the that key's value. So the os attribute may contribute zero or more entries
     # into the dictionary depending on what OSs were detected by p0f and held in these PlotDataHolder objects
@@ -116,8 +115,3 @@ class DataReader(object):
                 # noinspection PyTypeChecker
                 variable_dict[attribute] = attribute_dict
         return variable_dict
-
-   # def consolidate_data(self):
-   #     for h in self.__data_holders.holder_list:
-
-

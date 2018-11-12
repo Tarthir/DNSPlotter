@@ -24,7 +24,4 @@ class FileReader(object):
                 reader_method(my_file)
             except KeyError as err:
                 sys.stderr.write('KeyError in ReadFiles: %s\n' % str(err))
-        # Consolidate all the data now
-       # self.data_reader.consolidate_data()
-
 
