@@ -41,12 +41,16 @@ plotter = plot.Plotter()
 
 # DO OS's
 # Grab The inner dicts
-tmp = (list(special_dict.values()))[0]
+all_ips = (list(special_dict.values()))[0]
 num_of_os = {}
-for ip_dict in tmp.values():
+for ip_dict in all_ips.values():
 
     if ip_dict["os"] not in num_of_os.keys():
         num_of_os[ip_dict["os"]] = 1
     else:
         num_of_os[ip_dict["os"]] += 1
 plotter.categorical_bar_graph("Type Of OS's Found", "OS Types", "Number Found", list(num_of_os.keys()), list(num_of_os.values()))
+
+# DO by country
+plotter.categorical_bar_graph("Countries of Origin", "Countries", "Number Found",
+                              list(variable_dict["country"].keys()), list(variable_dict["country"].values()))

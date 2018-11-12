@@ -19,16 +19,17 @@ def make_dict_of_one_type(attribute_dict, variables, data_holders, key):
     for holder in data_holders:
         value = holder.var_dict[key]# getattr(holder, key)
         # TODO handle repeat values, list of dicts perhaps?
+        # prepare a dict if value has not been seen before now
         if value not in attribute_dict:
             attribute_dict[value] = {}
-            # for each variable in the DataHolder class put its type as key and value as the value
-            for v in variables:
-                # do all but the main key
-                if v != key:
-                    # If this attribute isnt found, add it and make it None
-                    if v not in holder.var_dict.keys():
-                        (attribute_dict[value])[v] = None
-                    else:
-                        (attribute_dict[value])[v] = holder.var_dict[v]
+        # for each variable in the DataHolder class put its type as key and value as the value
+        for v in variables:
+            # do all but the main key
+            if v != key:
+                # If this attribute isnt found, add it and make it None
+                if v not in holder.var_dict.keys():
+                    (attribute_dict[value])[v] = None
+                else:
+                    (attribute_dict[value])[v] = holder.var_dict[v]
 
 

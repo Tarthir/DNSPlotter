@@ -111,3 +111,8 @@ class DataReader(object):
                 # noinspection PyTypeChecker
                 variable_dict[attribute] = attribute_dict
         return variable_dict
+
+   # def consolidate_data(self):
+   #     for h in self.__data_holders.holder_list:
+
+

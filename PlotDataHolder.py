@@ -1,6 +1,7 @@
 import re
 import sys
 
+
 # This class is responsible for parsing and holding the data for one "unit" of a given data type,
 #  whether that be p0f/asn/etc
 class PlotDataHolder(object):
@@ -12,7 +13,7 @@ class PlotDataHolder(object):
         # The IP address associated with this data
         self.holder_ip = None
         # The number of times this IP has been found between all data sets
-        self.ports_found_on = []
+       # self.ports_found_on = []
 
     def parse_p0f(self, line1, line2, line3):
         # parse the lines and hold the data
@@ -29,7 +30,11 @@ class PlotDataHolder(object):
         name = line_arr[2].split(" - ")
         self.var_dict["shortname"] = name[0]
         if name[0] != "NA":
-            lst = name[1].rsplit(',', 1)
+            idx = 1
+            # if we are given a very small result we may not have split on " - "
+            if len(name) == 1:
+                idx = 0
+            lst = name[idx].rsplit(',', 1)
             self.var_dict["longname"] = lst[0]
             self.var_dict["country"] = lst[1]
 
@@ -38,7 +43,7 @@ class PlotDataHolder(object):
             self.var_dict["mod"] = re.search(r'mod=([^|]+)', line1).group(1)
             ip = (re.search("cli=([^|]+)", line1, re.DOTALL).group(1)).split("/")
             self.var_dict["client"] = ip[0]
-            self.ports_found_on.append(ip[1])
+            #self.ports_found_on.append(ip[1])
             self.var_dict["srv"] = re.search("srv=([^|]+)", line1, re.DOTALL).group(1)
             self.var_dict["subj"] = re.search("subj=([^|]+)", line1, re.DOTALL).group(1)
             self.var_dict["os"] = re.search("os=([^|]+)", line1, re.DOTALL).group(1)
@@ -57,3 +62,9 @@ class PlotDataHolder(object):
                 self.var_dict["reason"] = re.search("reason=([^|]+)", line2, re.DOTALL).group(1)
         except AttributeError as err:
             sys.stderr.write('ERROR: %sn' % str(err))
+
+    def update(self,new_holder):
+        for key in new_holder.var_dict.keys():
+            # if this key doesnt exist in our current holder or it's value is of NoneType
+            if key not in self.var_dict.keys() or self.var_dict[key] is None:
+                self.var_dict[key] = new_holder.var_dict[key]
