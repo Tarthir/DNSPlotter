@@ -18,8 +18,8 @@ class PlotDataHolder(object):
 
     def parse_p0f(self, line1, line2, line3):
         # parse the lines and hold the data
-        self.__parseline1(line1)
-        self.__parseline2(line2)
+        self.__parse_p0f_line1(line1)
+        self.__parse_p0f_line2(line2)
         if line3 is not None:
             sys.stderr.write("IP with host change found: {}\n".format(self.var_dict["client"]))
             self.__parseline2(line3)
@@ -70,7 +70,7 @@ class PlotDataHolder(object):
             return
         self.var_dict["country"] = longname_country_arr[0].strip()
 
-    def __parseline1(self, line1):
+    def __parse_p0f_line1(self, line1):
         try:
             self.var_dict["mod"] = re.search(r'mod=([^|]+)', line1).group(1)
             ip = (re.search("cli=([^|]+)", line1, re.DOTALL).group(1)).split("/")
@@ -85,7 +85,7 @@ class PlotDataHolder(object):
         except AttributeError as err:
             sys.stderr.write('ERROR: %sn' % str(err))
 
-    def __parseline2(self, line2):
+    def __parse_p0f_line2(self, line2):
         try:
             if re.search(r'mod=([^|]+)', line2).group(1) != "host change":
                 self.var_dict["link"] = re.search("link=([^|]+)", line2, re.DOTALL).group(1)
