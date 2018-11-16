@@ -2,7 +2,7 @@ import operator
 import DataReader as data_obj
 import Plotter as plot
 import sys
-import ReadFiles as file_reader
+import FileReader as file_reader
 import DataHolderMethods as methods
 
 # TODO see if there are different ASNs for both the one we queried and the one who queries our servers
@@ -47,10 +47,10 @@ all_ips = (list(special_dict.values()))[0]
 num_of_os = {}
 for ip_dict in all_ips.values():
 
-     if ip_dict["os"] not in num_of_os.keys():
-         num_of_os[ip_dict["os"]] = 1
-     else:
-         num_of_os[ip_dict["os"]] += 1
+    if ip_dict["os"] not in num_of_os.keys():
+        num_of_os[ip_dict["os"]] = 1
+    else:
+        num_of_os[ip_dict["os"]] += 1
 plotter.bar_graph("Type Of OS's Found", "OS Types", "Number Found", list(num_of_os.keys()), list(num_of_os.values()))
 
 # DO by country
@@ -64,10 +64,10 @@ plotter.bar_graph("Top 15 Countries", "Countries", "Number Found",
 # Do by country and include 'Other'
 top_countries['Other'] = 0
 for i in range(15, len(sorted_countries)):
-     top_countries['Other'] += sorted_countries[i][1]
+    top_countries['Other'] += sorted_countries[i][1]
 
 plotter.bar_graph("Top 15 Countries", "Countries", "Number Found",
-                               list(top_countries.keys()), list(top_countries.values()))
+                  list(top_countries.keys()), list(top_countries.values()))
 
 # Do by company name
 all_companies = variable_dict["shortname"]
@@ -75,7 +75,7 @@ all_companies = variable_dict["shortname"]
 sorted_companies = sorted(all_companies.items(), key=operator.itemgetter(1), reverse=True)
 top_companies = dict(sorted_companies[:10])
 plotter.bar_graph("Top 10 Companies", "Companies", "Number Found",
-                               list(top_companies.keys()), list(top_companies.values()))
+                  list(top_companies.keys()), list(top_companies.values()))
 
 # Do by Country pie chart
 explode = [0] * len(top_countries.keys())

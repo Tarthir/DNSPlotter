@@ -49,7 +49,7 @@ class DataReader(object):
             except UnicodeDecodeError as err:
                 sys.stderr.write('KeyError in DataHolderList: %s\n' % str(err))
             if not line:
-                break # EOF
+                break  # EOF
             line_arr = line.split("|")
             # Strip away all unneeded whitespace
             stripped_arr = [x.strip() for x in line_arr]
