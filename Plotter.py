@@ -9,7 +9,7 @@ class Plotter(object):
 
     # Ths method handles the making of categorical bar graphs
     # you pass in two lists, one of your x_values and one of your y values in respective order
-    def categorical_bar_graph(self, title, x_name, y_name, cat_x_values, num_y_values):
+    def bar_graph(self, title, x_name, y_name, cat_x_values, num_y_values):
         # convert NoneType to a string
         for i in range(0, len(cat_x_values)):
             if cat_x_values[i] is None:
@@ -57,8 +57,7 @@ class Plotter(object):
 
         fig, ax = plt.subplots()
 
-        # the histogram of the data
-        # TODO fix array thingie
+        # the histogram of the datae
         n, bins, patches = ax.hist(new_arr, num_bins, density=1)
 
         # add a 'best fit' line
@@ -72,7 +71,7 @@ class Plotter(object):
         # Tweak spacing to prevent clipping of ylabel
         fig.tight_layout()
         plt.show()
-
+    # Computes/returns the mean from a set of values. They should all be numbers of course
     def __get_mean(self, values):
         mu = 0
         num = 0
@@ -83,8 +82,12 @@ class Plotter(object):
                 continue
             num += values[distance]
         return mu // num  # mean of distribution
-    # The two return types need to be split up
+
+    # This function gets the standard dev from a list of values from a dictionary
+    # It computes that std dev and also returns the np array it made from the values
+    # to make the std dev. The np array is needed to complete the histogram
     def __get_std_dev(self, values):
+        # expand the dictionary keys/values into a list of lists
         arr = [[int(dist)] * int(values[dist]) for dist in values.keys()]
         new_arr = []
         for i in range(len(arr)):
@@ -93,6 +96,8 @@ class Plotter(object):
         std = np.sqrt(np.mean(abs(new_arr - new_arr.mean()) ** 2))
         return std, new_arr
 
+    # This function simply checks to see if there are ONLY numbers being passed in
+    # as values, if there are any non numbers passed in we remove it from the list
     def __check_dict(self, values):
         to_be_removed = []
         for key in values.keys():
@@ -102,6 +107,7 @@ class Plotter(object):
                 to_be_removed.append(key)
         for remove in to_be_removed:
             values.pop(remove, None)
+            # Can log this error if we want
 
     # def rand(self):
     #     np.random.seed(19680801)

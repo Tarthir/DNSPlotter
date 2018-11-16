@@ -51,14 +51,14 @@ for ip_dict in all_ips.values():
          num_of_os[ip_dict["os"]] = 1
      else:
          num_of_os[ip_dict["os"]] += 1
-plotter.categorical_bar_graph("Type Of OS's Found", "OS Types", "Number Found", list(num_of_os.keys()), list(num_of_os.values()))
+plotter.bar_graph("Type Of OS's Found", "OS Types", "Number Found", list(num_of_os.keys()), list(num_of_os.values()))
 
 # DO by country
 all_countries = (variable_dict["country"])
 # get the top 15 countries
 sorted_countries = sorted(all_countries.items(), key=operator.itemgetter(1), reverse=True)
 top_countries = dict(sorted_countries[:15])
-plotter.categorical_bar_graph("Top 15 Countries", "Countries", "Number Found",
+plotter.bar_graph("Top 15 Countries", "Countries", "Number Found",
                                list(top_countries.keys()), list(top_countries.values()))
 
 # Do by country and include 'Other'
@@ -66,7 +66,7 @@ top_countries['Other'] = 0
 for i in range(15, len(sorted_countries)):
      top_countries['Other'] += sorted_countries[i][1]
 
-plotter.categorical_bar_graph("Top 15 Countries", "Countries", "Number Found",
+plotter.bar_graph("Top 15 Countries", "Countries", "Number Found",
                                list(top_countries.keys()), list(top_countries.values()))
 
 # Do by company name
@@ -74,7 +74,7 @@ all_companies = variable_dict["shortname"]
 # get top 10 companies
 sorted_companies = sorted(all_companies.items(), key=operator.itemgetter(1), reverse=True)
 top_companies = dict(sorted_companies[:10])
-plotter.categorical_bar_graph("Top 10 Companies", "Companies", "Number Found",
+plotter.bar_graph("Top 10 Companies", "Companies", "Number Found",
                                list(top_companies.keys()), list(top_companies.values()))
 
 # Do by Country pie chart
@@ -89,7 +89,7 @@ sorted_mtus = sorted(all_mtu.items(), key=operator.itemgetter(1), reverse=True)
 top_mtus = dict(sorted_mtus[:15])
 explode = [0] * len(top_mtus.keys())
 explode[0] = 0.1
-plotter.categorical_bar_graph("Top MTU", "a", "a", list(top_mtus.keys()), list(top_mtus.values()))
+plotter.bar_graph("Top MTU", "a", "a", list(top_mtus.keys()), list(top_mtus.values()))
 
 #plotter.rand()
 # Do Hist for dist
