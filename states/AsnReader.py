@@ -1,5 +1,5 @@
 import states.ReaderState as State
-import PlotDataHolder as Holder
+from model import PlotDataHolder as Holder
 import sys
 
 

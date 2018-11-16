@@ -1,9 +1,7 @@
 import operator
-import DataReader as data_obj
-import Plotter as plot
+from readers import DataReader as data_obj, FileReader as file_reader
+from model import Plotter as plot, DataHolderMethods as methods
 import sys
-import FileReader as file_reader
-import DataHolderMethods as methods
 
 # TODO see if there are different ASNs for both the one we queried and the one who queries our servers
 # example of how to call: python PlotMain.py C:\Users\tyler\PycharmProjects\PlottingPractice\ client

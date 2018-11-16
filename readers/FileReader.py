@@ -2,7 +2,7 @@ import os
 import sys
 import states.AsnReader as ASN
 import states.P0fReader as P0F
-import DataHolderList as Holder_List
+from model import DataHolderList as Holder_List
 
 
 #TODO use state pattern

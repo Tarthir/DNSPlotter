@@ -1,9 +1,3 @@
-import PlotDataHolder as Holder
-import re
-import sys
-import DataHolderList as Holder_List
-
-
 class DataReader(object):
 
     def __init__(self):
