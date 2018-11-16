@@ -22,7 +22,7 @@ class PlotDataHolder(object):
         self.__parse_p0f_line2(line2)
         if line3 is not None:
             sys.stderr.write("IP with host change found: {}\n".format(self.var_dict["client"]))
-            self.__parseline2(line3)
+            self.__parse_p0f_line2(line3)
         self.holder_ip = self.var_dict["client"]
 
     # This method parses ASN lines

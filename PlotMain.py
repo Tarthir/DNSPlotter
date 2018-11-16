@@ -90,6 +90,8 @@ top_mtus = dict(sorted_mtus[:15])
 explode = [0] * len(top_mtus.keys())
 explode[0] = 0.1
 plotter.categorical_bar_graph("Top MTU", "a", "a", list(top_mtus.keys()), list(top_mtus.values()))
+
+#plotter.rand()
 # Do Hist for dist
-#dist = variable_dict["dist"]
-#plotter.hist("a", "a", "a", dist, 50)
+dist = variable_dict["dist"]
+plotter.hist("a", "a", "a", dist, 10)
