@@ -6,7 +6,7 @@ class DataHolderList(object):
         self.ip_to_holder = {}
         self.holder_list = []
         self.all_possible_keys = set()
-
+    # TODO this all may not be needed if we do what ASNreader is doing in  and grabbing the old holder to update it
     def append(self, holder):
 
         # See if ip address is already been found, if so add new ports it was found on

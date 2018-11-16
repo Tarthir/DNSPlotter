@@ -7,62 +7,15 @@ import DataHolderList as Holder_List
 class DataReader(object):
 
     def __init__(self):
-        # The List of DataHolder classes we will be pulling data from
-        self.__data_holders = Holder_List.DataHolderList()
         # The Variables of those DataHolder Classes
         self.__vars = None
-
-    def set_holders(self, holders):
-        self.__data_holders = holders
+        self.__data_holders = None
 
     def set_vars(self, var_list):
         self.__vars = var_list
 
-    @staticmethod
-    def __check_host_change(line):
-        return re.search(r'mod=([^|]+)', line).group(1) == "host change"
-
-    def read_p0f_data(self, filename):  # Reads the p0f data and creates P0fDataHolder from the data
-        # Read two lines at a time from p0f as each IP has two lines of data
-
-        fd = open(filename, "r")
-        while True:
-            line1 = fd.readline()
-            line2 = fd.readline()
-            line3 = None
-            if not line1 or not line2:
-                break  # EOF
-            if self.__check_host_change(line2):
-                line3 = fd.readline()
-            # Make a data holder and parse the p0f data
-            holder = Holder.PlotDataHolder()
-            holder.parse_p0f(line1, line2, line3)
-            self.__data_holders.append(holder)
-
-    # Goes through the asn data file(s) and
-    def read_asn_data(self, filename):
-        fd = open(filename, "r")
-        while True:
-            line = None
-            try:
-                line = fd.readline()
-            except UnicodeDecodeError as err:
-                sys.stderr.write('KeyError in DataHolderList: %s\n' % str(err))
-            if not line:
-                break  # EOF
-            line_arr = line.split("|")
-            # Strip away all unneeded whitespace
-            stripped_arr = [x.strip() for x in line_arr]
-            holder_to_update = None
-            # if we have already found the ip address
-            if stripped_arr[1] in self.__data_holders.ip_to_holder.keys():
-                holder_to_update = self.__data_holders.ip_to_holder[stripped_arr[1]]
-            # We have not seen this IP address before
-            else:
-                holder_to_update = Holder.PlotDataHolder()
-
-            holder_to_update.parse_asn(stripped_arr)
-            self.__data_holders.append(holder_to_update)
+    def set_holders(self, data_holders):
+        self.__data_holders = data_holders
 
     # Goes through every PlotDataHolder Object and adds every value for a given attribute
     # to a dictionary and adds 1 to the that key's value. So the os attribute may contribute zero or more entries
