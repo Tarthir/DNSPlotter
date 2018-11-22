@@ -27,3 +27,4 @@ class UdpSizeReader(State.ReaderState):
             if line_array[6] != "0":
                 holder.var_dict["20480"] = line_array[6]
             data_holders.append(holder)
+        print("UDP SIZE READER DOne!")

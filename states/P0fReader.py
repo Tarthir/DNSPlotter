@@ -8,11 +8,13 @@ class P0fReader(State.ReaderState):
 
     @staticmethod
     def __check_host_change(line):
+        return re.search(r'mod=([^|]+)', line).group(1) == "host change"
 
     # Reads the p0f data and creates P0fDataHolder from the data
     # File reader must handle the appending to the PlotDataHolderList
+
     def read(self, filename, data_holders):
-        # Read two lines at a time from        return re.search(r'mod=([^|]+)', line).group(1) == "host change" p0f as each IP has two lines of data
+        # Read two lines at a time from p0f as each IP has two lines of data
         # TODO will need to make sure we update like we do with ASN since we read through the files no no order anymore
         fd = open(filename, "r")
         while True:
