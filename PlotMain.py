@@ -102,5 +102,14 @@ for dic in s:
 sizes_names = ["512", "1024", "2048", "5120", "10240", "20480"]
 plotter.bar_graph("Number of Responders to certain sizes", "Size of Message", "Responses", sizes_names, sizes)
 
-#
-
+# How many ips had respondes to multiple sizes
+numbers = [0, 0, 0, 0, 0, 0, 0]
+for ips in (special_dict["client"]).values():
+    cnt = 0
+    for i in range(0, len(sizes_names)):
+        did_respond = ips[sizes_names[i]]
+        if did_respond:
+            cnt += 1
+    numbers[cnt] += 1
+plotter.bar_graph("IP Response Number Comparison", "Number of sizes IP responded to",
+                  "Number of IPS that responded", [0, 1, 2, 3, 4, 5, 6], numbers)
