@@ -58,7 +58,7 @@ class AsnReader(State.ReaderState):
     def __parse_asn(self, line_arr, holder):
         holder.var_dict["asn"] = line_arr[0]
         holder.var_dict["client"] = line_arr[1]
-
+        holder.holder_ip = line_arr[1]
         # Will split: MIT-GATEWAYS - Massachusetts Institute of Technology, US
         # to: [MIT-GATEWAYS, Massachusetts Institute of Technology, US ]
         # and GNW-ASN39211, EE

@@ -15,16 +15,17 @@ class UdpSizeReader(State.ReaderState):
             line_array = line.split()
             holder.var_dict["client"] = line_array[0]
             if line_array[1] != "0":
-                holder.var_dict["512"] = line_array[1]
+                holder.var_dict["512"] = 1
             if line_array[2] != "0":
-                holder.var_dict["1024"] = line_array[2]
+                holder.var_dict["1024"] = 1
             if line_array[3] != "0":
-                holder.var_dict["2048"] = line_array[3]
+                holder.var_dict["2048"] = 1
             if line_array[4] != "0":
-                holder.var_dict["5120"] = line_array[4]
+                holder.var_dict["5120"] = 1
             if line_array[5] != "0":
-                holder.var_dict["10240"] = line_array[5]
+                holder.var_dict["10240"] = 1
             if line_array[6] != "0":
-                holder.var_dict["20480"] = line_array[6]
+                holder.var_dict["20480"] = 1
+            holder.holder_ip = line_array[0]
             data_holders.append(holder)
         print("UDP SIZE READER DOne!")

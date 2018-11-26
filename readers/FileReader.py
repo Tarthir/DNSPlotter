@@ -34,4 +34,5 @@ class FileReader(object):
             except KeyError as err:
                 sys.stderr.write('KeyError in ReadFiles: %s\n' % str(err))
         self.data_reader.set_holders(self.__data_holders)
+        print("IPs Found in total: %s", len(self.__data_holders.ip_to_holder))
 

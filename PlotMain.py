@@ -30,7 +30,6 @@ special_dict = None
 if len(sys.argv) == 3:
     key = sys.argv[2]
     special_dict = dataReader.add_up_all_attrs(methods.get_var_of_one_type, methods.make_dict_of_one_type, key)
-
 plotter = plot.Plotter()
 
 
@@ -93,3 +92,15 @@ plotter.bar_graph("Top MTU", "a", "a", list(top_mtus.keys()), list(top_mtus.valu
 # Do Hist for dist
 dist = variable_dict["dist"]
 plotter.hist("a", "a", "a", dist, 10)
+sizes = []
+# Comparison of how many ips responded to a given udp size
+s = [variable_dict["512"], variable_dict["1024"], variable_dict["2048"], variable_dict["5120"],
+         variable_dict["10240"], variable_dict["20480"]]
+for dic in s:
+    c = (list(dic.values()))[1]
+    sizes.append(c)
+sizes_names = ["512", "1024", "2048", "5120", "10240", "20480"]
+plotter.bar_graph("Number of Responders to certain sizes", "Size of Message", "Responses", sizes_names, sizes)
+
+#
+
