@@ -76,7 +76,7 @@ class Plotter(object):
         # Tweak spacing to prevent clipping of ylabel
         fig.tight_layout()
         plt.show()
-        
+
     # Computes/returns the mean from a set of values. They should all be numbers of course
     def __get_mean(self, values):
         mu = 0
