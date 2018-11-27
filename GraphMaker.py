@@ -1,4 +1,5 @@
 import json
+import operator
 from model import Plotter as Plot
 import sys
 

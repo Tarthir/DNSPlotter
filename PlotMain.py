@@ -18,17 +18,23 @@ fileReader = File_Reader.FileReader(sys.argv[1], dataReader)
 
 # All files we are reading should be in one directory given as an argument
 # Read in all the files
+print("Reading all files...\n")
 fileReader.read_all_files()
 
 
 ######################################################################################################
 # BEGIN PROCESSING THE DATA
+print("Compiling Data...\n")
 key = "client"
 variable_dict = dataReader.add_up_all_attrs()
 special_dict = dataReader.add_up_all_attrs(Methods.get_var_of_one_type, Methods.make_dict_of_one_type, key)
+print("Compilation complete!")
 ######################################################################################################
 # Write data out to files
+print("Creating JSON Files...")
 with open("variable_dict.json", "w") as fp:
     json.dump(variable_dict, fp)
 with open("special_dict.json", "w") as fp:
     json.dump(special_dict, fp)
+print("JSON files complete!")
+
