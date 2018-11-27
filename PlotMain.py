@@ -4,9 +4,14 @@ import sys
 import json
 
 # TODO see if there are different ASNs for both the one we queried and the one who queries our servers
-# example of how to call: python PlotMain.py C:\Users\tyler\PycharmProjects\PlottingPractice\ client
+# example of how to call: python PlotMain.py C:\Users\tyler\PycharmProjects\PlottingPractice\
 
-######################################################################################################
+################################################################################################################
+# This program reads all data files that are created from the data gathered by running a fullscan of ipv4 space
+# This includes maxudp data, p0f, ASN, and geolocation. In essence this program gathers all the data into one
+# point for ease of use. All data is put into two dictionaries. One, variable_dict, has each possible variable
+# as a key for
+################################################################################################################
 # READ IN THE DATA FROM OUR FILES
 
 if len(sys.argv) != 2:

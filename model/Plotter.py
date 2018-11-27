@@ -10,10 +10,15 @@ class Plotter(object):
     # Ths method handles the making of categorical bar graphs
     # you pass in two lists, one of your x_values and one of your y values in respective order
     def bar_graph(self, title, x_name, y_name, cat_x_values, num_y_values):
+        max_name_len = 20
         # convert NoneType to a string
         for i in range(0, len(cat_x_values)):
             if cat_x_values[i] is None:
                 cat_x_values[i] = "None"
+            elif isinstance(cat_x_values[i], str) and len(cat_x_values[i]) > max_name_len:
+                # All we are doing here is cutting off everything but the first 10 characters
+                cat_x_values[i] = (cat_x_values[i])[:-(len(cat_x_values[i]) - max_name_len)]
+                cat_x_values[i] = (cat_x_values[i]) + "..."
 
         plt.style.use('ggplot')
         fig, ax = plt.subplots()
@@ -71,6 +76,7 @@ class Plotter(object):
         # Tweak spacing to prevent clipping of ylabel
         fig.tight_layout()
         plt.show()
+        
     # Computes/returns the mean from a set of values. They should all be numbers of course
     def __get_mean(self, values):
         mu = 0

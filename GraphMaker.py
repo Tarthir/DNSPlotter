@@ -77,7 +77,7 @@ plotter.hist("a", "a", "a", dist, 10)
 sizes = []
 # Comparison of how many ips responded to a given udp size
 s = [variable_dict["512"], variable_dict["1024"], variable_dict["2048"], variable_dict["5120"],
-         variable_dict["10240"], variable_dict["20480"]]
+     variable_dict["10240"], variable_dict["20480"]]
 for dic in s:
     c = (list(dic.values()))[1]
     sizes.append(c)
@@ -93,5 +93,18 @@ for ips in (special_dict["client"]).values():
         if did_respond:
             cnt += 1
     numbers[cnt] += 1
-plotter.bar_graph("IP Response Number Comparison", "Number of sizes IP responded to",
+plotter.bar_graph("IP Response Number Comparison", "Number of sizes IPs responded to",
                   "Number of IPS that responded", [0, 1, 2, 3, 4, 5, 6], numbers)
+# How many ips responded only to larger sizes
+numbers = [0, 0, 0, 0, 0]
+sizes_names.pop(0)
+for ips in (special_dict["client"]).values():
+    cnt = 0
+    for i in range(0, len(sizes_names)):
+        did_respond = ips[sizes_names[i]]
+        if did_respond:
+            numbers[i] += 1
+
+
+plotter.bar_graph("How many IPs only responded to > 512 bytes?", "Response sizes",
+                  "Number", ["> 512", "> 1024", "> 2048", "> 5120", "> 10240"], numbers)
