@@ -11,9 +11,9 @@ plotter = Plot.Plotter()
 variable_dict = None
 special_dict = None
 try:
-    with open("variable_dict.json") as file_var:
+    with open("datalib/variable_dict.json") as file_var:
         variable_dict = json.load(file_var)
-    with open("special_dict.json") as file_var:
+    with open("datalib/special_dict.json") as file_var:
         special_dict = json.load(file_var)
 except IOError as err:
     sys.stderr.write('ERROR: %sn' % str(err))

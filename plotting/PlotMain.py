@@ -37,9 +37,9 @@ print("Compilation complete!")
 ######################################################################################################
 # Write data out to files
 print("Creating JSON Files...")
-with open("variable_dict.json", "w") as fp:
+with open("datalib/variable_dict.json", "w") as fp:
     json.dump(variable_dict, fp)
-with open("special_dict.json", "w") as fp:
+with open("datalib/special_dict.json", "w") as fp:
     json.dump(special_dict, fp)
 print("JSON files complete!")
 
