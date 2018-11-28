@@ -4,32 +4,39 @@ from matplotlib.ticker import MaxNLocator
 from collections import namedtuple
 from numpy import array
 
-
+#########################
+# This class is where data you pass in data in order to be made into graphs
+#########################
 class Plotter(object):
 
     # Ths method handles the making of categorical bar graphs
     # you pass in two lists, one of your x_values and one of your y values in respective order
-    def bar_graph(self, title, x_name, y_name, cat_x_values, num_y_values):
+    # title: The title you want
+    # x_name: how you want to label the x axis
+    # y_name: how you want to label the y axis
+    # x_values: The values for the x axis
+    # y_values: The values for the y axis
+    def bar_graph(self, title, x_name, y_name, x_values, y_values):
         max_name_len = 20
         # convert NoneType to a string
-        for i in range(0, len(cat_x_values)):
-            if cat_x_values[i] is None:
-                cat_x_values[i] = "None"
-            elif isinstance(cat_x_values[i], str) and len(cat_x_values[i]) > max_name_len:
+        for i in range(0, len(x_values)):
+            if x_values[i] is None:
+                x_values[i] = "None"
+            elif isinstance(x_values[i], str) and len(x_values[i]) > max_name_len:
                 # All we are doing here is cutting off everything but the first 10 characters
-                cat_x_values[i] = (cat_x_values[i])[:-(len(cat_x_values[i]) - max_name_len)]
-                cat_x_values[i] = (cat_x_values[i]) + "..."
+                x_values[i] = (x_values[i])[:-(len(x_values[i]) - max_name_len)]
+                x_values[i] = (x_values[i]) + "..."
 
         plt.style.use('ggplot')
         fig, ax = plt.subplots()
         # Grab the indexes of each x val
-        x_pos = [i for i, _ in enumerate(cat_x_values)]
+        x_pos = [i for i, _ in enumerate(x_values)]
 
-        plt.bar(x_pos, num_y_values, color='green')
+        plt.bar(x_pos, y_values, color='green')
         ax.set_xlabel(x_name)
         ax.set_ylabel(y_name)
         ax.set_title(title)
-        plt.xticks(x_pos, cat_x_values)
+        plt.xticks(x_pos, x_values)
         plt.setp(plt.gca().get_xticklabels(), rotation=45, horizontalalignment='right')
         # fig.tight_layout()
         plt.show()
@@ -50,6 +57,14 @@ class Plotter(object):
 
         plt.show()
 
+    # Makes a histogram from given data
+    # title: The title you want
+    # x_label: how you want to label the x axis
+    # y_label: how you want to label the y axis
+    # values: A dictionary or key value pairs. Keys are
+    # the numbers themselves, values are how many times that number is found in the data
+    # Ex: {'26': 7.0, '22': 3.0, '25': 1.0, '19': 5.0, '21': 2.0, '30': 1.0, '18': 5.0, '24': 1.0, '20': 2.0}
+    # num_of_bins: How many bins you want for the histogram
     def hist(self, title, x_label, y_label, values, num_of_bins):
         self.__check_dict(values)
 
@@ -114,30 +129,3 @@ class Plotter(object):
         for remove in to_be_removed:
             values.pop(remove, None)
             # Can log this error if we want
-
-    # def rand(self):
-    #     np.random.seed(19680801)
-    #
-    #     # example data
-    #     mu = 100  # mean of distribution
-    #     sigma = 15  # standard deviation of distribution
-    #     x = mu + sigma * np.random.randn(437)
-    #
-    #     num_bins = 50
-    #
-    #     fig, ax = plt.subplots()
-    #
-    #     # the histogram of the data
-    #     n, bins, patches = ax.hist(x, num_bins, density=1)
-    #
-    #     # add a 'best fit' line
-    #     y = ((1 / (np.sqrt(2 * np.pi) * sigma)) *
-    #          np.exp(-0.5 * (1 / sigma * (bins - mu)) ** 2))
-    #     ax.plot(bins, y, '--')
-    #     ax.set_xlabel('Smarts')
-    #     ax.set_ylabel('Probability density')
-    #     ax.set_title(r'Histogram of IQ: $\mu=100$, $\sigma=15$')
-    #
-    #     # Tweak spacing to prevent clipping of ylabel
-    #     fig.tight_layout()
-    #     plt.show()

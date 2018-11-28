@@ -4,6 +4,8 @@ from model import Plotter as Plot
 import sys
 
 #####################################################################################################
+# This file shows examples of how to make graphs using Plotter.py
+#####################################################################################################
 # Do setup, grab the json files
 plotter = Plot.Plotter()
 variable_dict = None
@@ -108,3 +110,4 @@ for ips in (special_dict["client"]).values():
 
 plotter.bar_graph("How many IPs only responded to > 512 bytes?", "Response sizes",
                   "Number", ["> 512", "> 1024", "> 2048", "> 5120", "> 10240"], numbers)
+# TODO Make a comparison btwn size returned(Kwans data) and MTU. MTU is how many bytes can be sent at time
