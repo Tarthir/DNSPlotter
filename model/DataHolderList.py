@@ -15,6 +15,9 @@ class DataHolderList(object):
             try:
                 old_holder = self.ip_to_holder[holder.var_dict["client"]]
                 # old_holder.ports_found_on.append(holder.var_dict["clientport"])
+                # Don't bother with duplicates
+                if old_holder.var_dict == holder.var_dict:
+                    return
                 old_holder.update(holder)
                 holder = old_holder
 

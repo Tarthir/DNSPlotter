@@ -4,7 +4,7 @@ import sys
 import json
 
 # TODO see if there are different ASNs for both the one we queried and the one who queries our servers
-# example of how to call: python PlotMain.py C:\Users\tyler\PycharmProjects\PlottingPractice\
+# example of how to call: python PlotMain.py C:/Users/tyler/PycharmProjects/PlottingPractice/datalib
 
 ################################################################################################################
 # This program reads all data files that are created from the data gathered by running a fullscan of ipv4 space
@@ -17,16 +17,16 @@ import json
 if len(sys.argv) != 2:
     print("Invalid, Usage: python PlotMain.py {}\n".format("<DataFilesPath>"))
     exit(1)
-
+directory = sys.argv[1]
 dataReader = Data_Obj.DataReader()
-fileReader = File_Reader.FileReader(sys.argv[1], dataReader)
+fileReader = File_Reader.FileReader(directory, dataReader)
 
 # All files we are reading should be in one directory given as an argument
 # Read in all the files
 print("Reading all files...\n")
 fileReader.read_all_files()
 
-
+# TODO need to support making of lists of dicts for each IP address
 ######################################################################################################
 # BEGIN PROCESSING THE DATA
 print("Compiling Data...\n")
@@ -37,9 +37,10 @@ print("Compilation complete!")
 ######################################################################################################
 # Write data out to files
 print("Creating JSON Files...")
-with open("datalib/variable_dict.json", "w") as fp:
+
+with open(directory + "variable_dict.json", "w") as fp:
     json.dump(variable_dict, fp)
-with open("datalib/special_dict.json", "w") as fp:
+with open(directory + "special_dict.json", "w") as fp:
     json.dump(special_dict, fp)
 print("JSON files complete!")
 
