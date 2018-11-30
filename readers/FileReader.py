@@ -6,7 +6,6 @@ import states.UdpSizeReader as UDPSIZE
 from model import DataHolderList as Holder_List
 
 
-#TODO use state pattern
 # FilerReader holds DataHolder list and other requisute data. And a state object, tracks what kinda file we are reading
 # Reading and parsing of files is handled by various DataReader Types
 # This class holds all methods for reading in the different types of files
