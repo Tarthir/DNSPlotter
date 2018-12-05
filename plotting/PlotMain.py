@@ -26,13 +26,13 @@ fileReader = File_Reader.FileReader(directory, dataReader)
 print("Reading all files...\n")
 fileReader.read_all_files()
 
-# TODO need to support making of lists of dicts for each IP address
+# TODO support making of lists of dicts for each IP addresses? Add IDs instead oIP being determining factor?
 ######################################################################################################
 # BEGIN PROCESSING THE DATA
 print("Compiling Data...\n")
-key = "client"
+main_key = "client"
 variable_dict = dataReader.add_up_all_attrs()
-special_dict = dataReader.add_up_all_attrs(Methods.get_var_of_one_type, Methods.make_dict_of_one_type, key)
+special_dict = dataReader.add_up_all_attrs(Methods.get_var_of_one_type, Methods.make_dict_of_one_type, main_key)
 print("Compilation complete!")
 ######################################################################################################
 # Write data out to files

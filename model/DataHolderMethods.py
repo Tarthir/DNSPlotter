@@ -18,7 +18,6 @@ def get_var_of_one_type(var_str=None, data_holder=None):
 def make_dict_of_one_type(attribute_dict, variables, data_holders, key):
     for holder in data_holders:
         value = holder.var_dict[key]# getattr(holder, key)
-        # TODO handle repeat values, list of dicts perhaps?
         # prepare a dict if value has not been seen before now
         if value not in attribute_dict:
             attribute_dict[value] = {}

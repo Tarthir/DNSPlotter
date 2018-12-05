@@ -37,10 +37,10 @@ class DataReader(object):
     # how many times each piece of data was found. Also returns the number of IPs which are in our data
     # Optional parameters determine what variables are used for the variable dict and
     # how the dictionary is constructed
-    def add_up_all_attrs(self, get_vars=__get_variables, make_vals=__add_up_attr, key=None):
+    def add_up_all_attrs(self, get_vars=__get_variables, make_vals=__add_up_attr, main_key=None):
         # This dictionary will hold a value for every variable attribute in the PlotDataHolder class
         # gets only the variables from the given DataHolder class
-        variables = get_vars(key, self.__data_holders)
+        variables = get_vars(main_key, self.__data_holders)
         self.set_vars(variables)
 
         # add the variable names to a dictionary
@@ -53,7 +53,7 @@ class DataReader(object):
             if len(variable_dict) == 1:
                 # If you are passing in only one variable I assume you want all the other DataHolder Vars as
                 # keys in attribute_dict and value of variable_dict
-                make_vals(attribute_dict, self.__data_holders.all_possible_keys, self.__data_holders.holder_list, key)
+                make_vals(attribute_dict, self.__data_holders.all_possible_keys, self.__data_holders.holder_list, main_key)
             else:
                 make_vals(self, attribute, attribute_dict, self.__data_holders.holder_list)
             # if the dictionary we passed into make_values came back with keys and values in it
