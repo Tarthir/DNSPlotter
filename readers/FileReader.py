@@ -3,6 +3,7 @@ import sys
 import states.AsnReader as ASN
 import states.P0fReader as P0F
 import states.UdpSizeReader as UDPSIZE
+import states.IpvReader as IPV
 from model import DataHolderList as Holder_List
 
 
@@ -18,7 +19,7 @@ class FileReader(object):
         self.dir = directory
         self.data_reader = data_reader
         # Add to this if you want to read additional file types!
-        self.readers = {'.log': P0F.P0fReader(), '.data': ASN.AsnReader(), '.udpsize': UDPSIZE.UdpSizeReader()}
+        self.readers = {'.p0f': P0F.P0fReader(), '.asn': ASN.AsnReader(), '.udpsize': UDPSIZE.UdpSizeReader(), '.ipv': IPV.IpvReader()}
 
     # This function calls the methods which read in all the data into our DataReader
     def read_all_files(self):
