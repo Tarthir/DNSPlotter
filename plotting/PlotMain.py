@@ -1,7 +1,6 @@
-from readers import DataReader as Data_Obj, FileReader as File_Reader
-from model import DataHolderMethods as Methods
+from readers import FileReader as File_Reader
 import sys
-import json
+import pickle
 
 # TODO see if there are different ASNs for both the one we queried and the one who queries our servers
 # example of how to call: python PlotMain.py C:/Users/tyler/PycharmProjects/PlottingPractice/datalib
@@ -18,29 +17,26 @@ if len(sys.argv) != 2:
     print("Invalid, Usage: python PlotMain.py {}\n".format("<DataFilesPath>"))
     exit(1)
 directory = sys.argv[1]
-dataReader = Data_Obj.DataReader()
-fileReader = File_Reader.FileReader(directory, dataReader)
+fileReader = File_Reader.FileReader(directory)
 
 # All files we are reading should be in one directory given as an argument
 # Read in all the files
 print("Reading all files...\n")
-fileReader.read_all_files()
+data_holders = fileReader.read_all_files()
+d = data_holders.get_value_dict("country")
 
 # TODO support making of lists of dicts for each IP addresses? Add IDs instead oIP being determining factor?
 ######################################################################################################
 # BEGIN PROCESSING THE DATA
-print("Compiling Data...\n")
-main_key = "client"
-variable_dict = dataReader.add_up_all_attrs()
-special_dict = dataReader.add_up_all_attrs(Methods.get_var_of_one_type, Methods.make_dict_of_one_type, main_key)
-print("Compilation complete!")
+print("All possible keys are as follows: ")
+for key in data_holders.all_possible_keys:
+    print("%s " % key)
+
 ######################################################################################################
 # Write data out to files
-print("Creating JSON Files...")
-
-with open(directory + "variable_dict.json", "w") as fp:
-    json.dump(variable_dict, fp)
-with open(directory + "special_dict.json", "w") as fp:
-    json.dump(special_dict, fp)
-print("JSON files complete!")
+print("Creating Binary Files...")
+binary_file = open(directory + 'my_pickeled_data.bin', mode='wb')
+my_pickled_data = pickle.dump(data_holders, binary_file)
+binary_file.close()
+print("Binary files completed!")
 

@@ -13,29 +13,26 @@ from model import DataHolderList as Holder_List
 # Each subclass of the state has a read and parse function(perhaps parse is private)
 class FileReader(object):
 
-    def __init__(self, directory, data_reader):
+    def __init__(self, directory):
         # The List of DataHolder classes we will be pulling data from
-        self.__data_holders = Holder_List.DataHolderList()
         self.dir = directory
-        self.data_reader = data_reader
         # Add to this if you want to read additional file types!
         self.readers = {'.p0f': P0F.P0fReader(), '.asn': ASN.AsnReader(), '.udpsize': UDPSIZE.UdpSizeReader(), '.ipv': IPV.IpvReader()}
 
     # This function calls the methods which read in all the data into our DataReader
     def read_all_files(self):
-        # Go through every p0f file
+        data_holders = Holder_List.DataHolderList()
+        # Go through every file
         for file in os.listdir(self.dir):
             filename, file_extension = os.path.splitext(file)
             try:
                 reader = self.readers[file_extension]
                 my_file = self.dir + file
                 # read that files contents into our DataReader
-                reader.read(my_file, self.__data_holders)
+                reader.read(my_file, data_holders)
                 print("{} has been read\n".format(file))
             except KeyError as err:
                 sys.stderr.write('KeyError in ReadFiles: %s\n' % str(err))
-        self.data_reader.set_holders(self.__data_holders)
-        # update all data holder dictionaries with all possible keys for consistency
-       # self.__data_holders.update_all_keys()
-        print("All Files read\nIPs Found in total: ", len(self.__data_holders.ip_to_holder))
+        print("All Files read\nIPs Found in total: ", len(data_holders.ip_to_holder))
+        return data_holders
 

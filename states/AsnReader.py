@@ -57,7 +57,7 @@ class AsnReader(State.ReaderState):
     # line_arr will usually look like this: [ASN,IP,REST] with REST = 'SHORT_NAME - LONGNAME, COUNTRY CODE'
     def __parse_asn(self, line_arr, holder):
         holder.var_dict["asn"] = line_arr[0]
-        holder.var_dict["client"] = line_arr[1]
+        holder.var_dict["client"] = line_arr[1].strip()
         holder.holder_ip = line_arr[1]
         # Will split: MIT-GATEWAYS - Massachusetts Institute of Technology, US
         # to: [MIT-GATEWAYS, Massachusetts Institute of Technology, US ]

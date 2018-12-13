@@ -13,7 +13,7 @@ class UdpSizeReader(State.ReaderState):
         for line in udp_size_parsed:
             holder = Holder.PlotDataHolder()
             line_array = line.split()
-            holder.var_dict["client"] = line_array[0]
+            holder.var_dict["client"] = line_array[0].strip()
             if line_array[1] != "0":
                 holder.var_dict["512"] = 1
             if line_array[2] != "0":

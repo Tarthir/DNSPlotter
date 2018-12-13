@@ -43,7 +43,7 @@ class P0fReader(State.ReaderState):
         try:
             holder.var_dict["mod"] = re.search(r'mod=([^|]+)', line1).group(1)
             ip = (re.search("cli=([^|]+)", line1, re.DOTALL).group(1)).split("/")
-            holder.var_dict["client"] = ip[0]
+            holder.var_dict["client"] = ip[0].strip()
             # self.ports_found_on.append(ip[1])
             holder.var_dict["srv"] = re.search("srv=([^|]+)", line1, re.DOTALL).group(1)
             holder.var_dict["subj"] = re.search("subj=([^|]+)", line1, re.DOTALL).group(1)
