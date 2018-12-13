@@ -3,7 +3,7 @@ import sys
 
 class DataHolderList(object):
     def __init__(self):
-        self.__ip_to_holder = {}
+        self.ip_to_holder = {}
         self.holder_list = []
         self.all_possible_keys = set()
 
@@ -11,9 +11,9 @@ class DataHolderList(object):
     def append(self, holder):
 
         # See if ip address is already been found, if so update the already existing holder
-        if holder.var_dict["client"] in self.__ip_to_holder.keys():
+        if holder.var_dict["client"] in self.ip_to_holder.keys():
             try:
-                old_holder = self.__ip_to_holder[holder.var_dict["client"]]
+                old_holder = self.ip_to_holder[holder.var_dict["client"]]
                 # old_holder.ports_found_on.append(holder.var_dict["clientport"])
                 # Don't bother with duplicates
                 if old_holder.var_dict == holder.var_dict:
@@ -28,7 +28,7 @@ class DataHolderList(object):
                 return
         else:
             # this ip and its associated data has not been found before
-            self.__ip_to_holder[holder.var_dict["client"]] = holder
+            self.ip_to_holder[holder.var_dict["client"]] = holder
             self.holder_list.append(holder)
         self.all_possible_keys.update((list(holder.var_dict.keys())))
 
