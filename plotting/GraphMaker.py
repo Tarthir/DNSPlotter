@@ -1,5 +1,5 @@
 import operator
-from model import Plotter as Plot
+from graphmodel import Plotter as Plot
 import sys
 import pickle
 #####################################################################################################

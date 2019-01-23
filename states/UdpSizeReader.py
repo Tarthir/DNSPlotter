@@ -1,6 +1,6 @@
 import states.ReaderState as State
 import re
-from model import PlotDataHolder as Holder
+from graphmodel import PlotDataHolder as Holder
 import sys
 
 

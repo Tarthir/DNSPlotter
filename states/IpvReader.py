@@ -1,5 +1,5 @@
 import states.ReaderState as Reader
-from model import PlotDataHolder as Holder
+from graphmodel import PlotDataHolder as Holder
 
 
 class IpvReader(Reader.ReaderState):

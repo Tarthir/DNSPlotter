@@ -4,7 +4,7 @@ import states.AsnReader as ASN
 import states.P0fReader as P0F
 import states.UdpSizeReader as UDPSIZE
 import states.IpvReader as IPV
-from model import DataHolderList as Holder_List
+from graphmodel import DataHolderList as Holder_List
 
 
 # FilerReader holds DataHolder list and other requisute data. And a state object, tracks what kinda file we are reading
