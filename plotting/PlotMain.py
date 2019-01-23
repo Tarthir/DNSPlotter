@@ -25,7 +25,6 @@ print("Reading all files...\n")
 data_holders = fileReader.read_all_files()
 d = data_holders.get_value_dict("country")
 
-# TODO support making of lists of dicts for each IP addresses? Add IDs instead oIP being determining factor?
 ######################################################################################################
 # BEGIN PROCESSING THE DATA
 print("All possible keys are as follows: ")
